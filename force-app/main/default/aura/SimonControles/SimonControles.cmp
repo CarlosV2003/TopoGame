@@ -1,0 +1,42 @@
+<aura:component controller="RandomApex">
+    <aura:attribute name="buttonClicks" type="Map" default="{}" />
+    <aura:attribute name="buttonSequence" type="String" default="" />
+    <aura:attribute name="allSequences" type="List" default="[]" />
+    <aura:attribute name="isRecording" type="Boolean" default="false" />
+    <aura:handler event="c:ButtonClick" action="{!c.handleButtonClickEvent}" />
+    <lightning:button name="Grabar" label="Grabar" onclick="{!c.handleRecordClick}" />
+    <lightning:button name="Stop" label="Stop" onclick="{!c.handleStopClick}" />
+    <lightning:button name="Play" label="Play" onclick="{!c.handleButtonClick}" />
+    <lightning:button name="Guardar" label="Guardar" onclick="{!c.handleButtonClick}" />
+
+    <!-- Display the button sequence -->
+    <p>Buttons pressed: {!v.buttonSequence}</p>
+
+    <!-- Display all sequences -->
+    <p>Sequence:</p>
+    <aura:iteration items="{!v.allSequences}" var="seq">
+        <br/>
+        <aura:iteration items="{!seq}" var="buttonName">
+            <aura:if isTrue="{!buttonName == '1'}">
+                <div class="slds-button slds-button_neutral" style="background-color: red; display: inline-block; padding: 10px; font-size: 20px;">
+                    <a style="color: white;">{!buttonName}</a>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!buttonName == '2'}">
+                <div class="slds-button slds-button_neutral" style="background-color: green; display: inline-block; padding: 10px; font-size: 20px;">
+                    <a style="color: white;">{!buttonName}</a>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!buttonName == '3'}">
+                <div class="slds-button slds-button_neutral" style="background-color: blue; display: inline-block; padding: 10px; font-size: 20px;">
+                    <a style="color: white;">{!buttonName}</a>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!buttonName == '4'}">
+                <div class="slds-button slds-button_neutral" style="background-color: yellow; display: inline-block; padding: 10px; font-size: 20px;">
+                    <a style="color: black;">{!buttonName}</a>
+                </div>
+            </aura:if>
+        </aura:iteration>
+    </aura:iteration>
+</aura:component>
